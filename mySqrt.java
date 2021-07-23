@@ -11,7 +11,7 @@ public class mySqrt {
 	 * 0 <= x <= 2^31 - 1
 	 */
 
-    public static int mySqrt(int x) {
+    public static double mySqrt(double x) {
         /* 
          * Newton Raphson Method
          * Starting with x = sqrt(num) -> x^2 = 2 -> x^2 - 2 = 0
@@ -27,16 +27,19 @@ public class mySqrt {
          * -> x_(n+1) = (x + num/x)/2
          */
     	
-    	
-    	long sqrt = x;
+    	double sqrt = x;
         while(sqrt*sqrt > x) {
         	sqrt = (sqrt + (x/sqrt))/2;
         }
-        return (int)sqrt;
+        return sqrt;
     }
 	
 	public static void main(String[] args) {
-		System.out.println(mySqrt(8));
+		double[] nums = {4,8,9,16,25,36,49,100,225,9801,9999,10000,10001};
+		for(double num: nums) {
+			System.out.println("The square root of num "+num+" is: "+mySqrt(num));
+		}
+		
 	}
 
 }
