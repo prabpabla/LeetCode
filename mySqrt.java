@@ -11,7 +11,7 @@ public class mySqrt {
 	 * 0 <= x <= 2^31 - 1
 	 */
 
-    public static double mySqrt(double x) {
+    public static double mySqrt(double number) {
         /* 
          * Newton Raphson Method
          * Starting with x = sqrt(num) -> x^2 = 2 -> x^2 - 2 = 0
@@ -26,12 +26,25 @@ public class mySqrt {
          * -> x_(n+1) = x/2 + num/(2x)
          * -> x_(n+1) = (x + num/x)/2
          */
-    	
+    	/*
     	double sqrt = x;
+    	
+    
         while(sqrt*sqrt > x) {
         	sqrt = (sqrt + (x/sqrt))/2;
         }
         return sqrt;
+        */
+    	double x = number;
+    	double xhalf = 0.5d*x;
+        long i = Double.doubleToLongBits(x);
+        i = 0x5fe6ec85e7de30daL - (i>>1);
+        x = Double.longBitsToDouble(i);
+        for(int it = 0; it < 4; it++){
+            x = x*(1.5d - xhalf*x*x);
+        }
+        x *= number;
+        return (int)x;
     }
 	
 	public static void main(String[] args) {
