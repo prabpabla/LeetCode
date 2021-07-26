@@ -26,10 +26,12 @@ public class Climb_Stairs {
     }
     */
 	
-	public static long climbStairs(int n) {
+	//Dynamic Programming
+	/*
+	public static int climbStairs(int n) {
 		if (n <= 3)
         	return n;
-		long[] step = new long[n];
+		int[] step = new int[n];
 		step[0]=1;
 		step[1]=2;
 		for(int i = 2; i <= n-1; i++) {
@@ -37,9 +39,20 @@ public class Climb_Stairs {
 		}
 		return step[n-1];
 	}
+	*/
+	
+	//Fibonacci Number Formula
+	public static int climbStairs(int n) {
+		if (n <= 3)
+        	return n;
+		n++;
+		double phi1 = (1 + Math.sqrt(5))/2;
+		double phi2 = (1 - Math.sqrt(5))/2;
+		return (int)((Math.pow(phi1, n) - Math.pow(phi2, n))/Math.sqrt(5));
+	}
 	
 	public static void main(String[] args) {
-		int[] n = {1,2,3,4,5,6,7,45,100,200};
+		int[] n = {1,2,3,4,5,6,7,8,45};
 		for(int m: n) {
 			System.out.println(climbStairs(m));
 		}
